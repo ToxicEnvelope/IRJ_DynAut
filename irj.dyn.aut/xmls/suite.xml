@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="">
+    <listeners>
+        <!---<listener class-name="" />-->
+    </listeners>
+    <test name="IP API /Json Endpoint Test" enabled="true">
+        <classes>
+            <class name="irj.dyn.aut.core.api.rest.ipapi.IpApiJson"/>
+        </classes>
+    </test>
+</suite>

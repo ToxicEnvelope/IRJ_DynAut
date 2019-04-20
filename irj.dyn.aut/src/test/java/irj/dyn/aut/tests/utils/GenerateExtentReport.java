@@ -23,6 +23,11 @@ public class GenerateExtentReport extends RestAssured
     private static final String DOCKER_PORT = "Docker Port";
     private static final String OLTP_USER = "OLTP User";
     private static final String OLTP_PASS = "OLTP Pass";
+    private static final String AUTH_CREDS_WS = "WebService Auth Credentials";
+    private static final String WS_ENDPOINT = "WebService Endpoint";
+    private static final String DI_ENDPOINT = "DataIntegration Endpoint";
+    private static final String DI_NAMESPACE = "DataIntegration Namespace";
+
 
     protected static ExtentReports report;
     private static ExtentHtmlReporter html;
@@ -47,6 +52,10 @@ public class GenerateExtentReport extends RestAssured
         report.setSystemInfo(DOCKER_PORT, EnvManager.getInstance().getDockerPort());
         report.setSystemInfo(OLTP_USER, EnvManager.getInstance().getOltpUserSchema());
         report.setSystemInfo(OLTP_PASS, EnvManager.getInstance().getOltpPassSchema());
+        report.setSystemInfo(AUTH_CREDS_WS, EnvManager.getInstance().getAuthCredsWS());
+        report.setSystemInfo(WS_ENDPOINT, EnvManager.getInstance().getWSEndpoint());
+        report.setSystemInfo(DI_ENDPOINT, EnvManager.getInstance().getDIEndpoint());
+        report.setSystemInfo(DI_NAMESPACE, EnvManager.getInstance().getNamespace());
 
         //configuration items to change the look and feel
         //add content, manage tests etc
