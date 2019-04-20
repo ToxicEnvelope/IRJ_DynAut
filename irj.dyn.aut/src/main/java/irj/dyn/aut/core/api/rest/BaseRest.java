@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 public class BaseRest {
     private static final Logger logger = LoggerFactory.getLogger(BaseRest.class);
 
-    private static final String BASE_URL = EnvManager.getInstance().getEnvironmentUrl();
+    protected static final String BASE_URL = EnvManager.getInstance().getEnvironmentUrl();
     private static String IP_INPUT = "";
 
     public BaseRest(String uri) { bindEntryUri(uri); }

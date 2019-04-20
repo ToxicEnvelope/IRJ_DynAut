@@ -9,4 +9,6 @@ public class IpApiJson extends BaseRest {
     public IpApiJson(String ipAddress) {
         super(ipAddress.concat(URI));
     }
+
+    public static String getUrl() { return BASE_URL; }
 }
