@@ -20,6 +20,7 @@ public class EnvManager
     private static final String AUTH_CREDS_WS = "authCredsWS";
     private static final String WS_ENDPOINT = "wsEndpoint";
     private static final String DI_ENDPOINT = "diEndpoint";
+    private static final String NAMESPACE = "idNamespace";
 
 
     private static Map<Object, Object> externalParameters = new HashMap<>();
@@ -115,5 +116,12 @@ public class EnvManager
         System.out.println("\nCalling "+ new Throwable().getStackTrace()[0].getMethodName());
         System.out.println("Parsing `"+DI_ENDPOINT+"` From File -> '"+externalParameters.get(DI_ENDPOINT).toString()+"'...");
         return externalParameters.get(DI_ENDPOINT).toString();
+    }
+
+    public String getNamespace() {
+        logger.info("Getting WS Auth Credetials...");
+        System.out.println("\nCalling "+ new Throwable().getStackTrace()[0].getMethodName());
+        System.out.println("Parsing `"+NAMESPACE+"` From File -> '"+externalParameters.get(NAMESPACE).toString()+"'...");
+        return externalParameters.get(NAMESPACE).toString();
     }
 }

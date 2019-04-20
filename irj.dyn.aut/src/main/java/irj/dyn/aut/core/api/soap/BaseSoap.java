@@ -4,12 +4,15 @@ import irj.dyn.aut.activity.utils.EnvManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.soap.*;
+
 
 public class BaseSoap {
     private static final Logger logger = LoggerFactory.getLogger(BaseSoap.class);
 
     private static final String DI_URL = EnvManager.getInstance().getDIEndpoint();
-    private static final String OPEN_XML_ENVELOPE = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:vis="+DI_URL+">\n";
+    private static final String DI_NAMESPACE = EnvManager.getInstance().getNamespace();
+    private static final String OPEN_XML_ENVELOPE = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:"+DI_NAMESPACE+"=\""+DI_URL+"\">\n";
     private static final String XML_HEADER = "<soapenv:Header/>\n";
     private static final String OPEN_XML_BODY = "<soapenv:Body>\n";
     private static final String CLOSE_XML_BODY = "</soapenv:Body>\n";
@@ -23,6 +26,9 @@ public class BaseSoap {
     protected String getDataIntegrationURL() {
         return DI_URL;
     }
+    protected String getDINamespace() {
+        return DI_NAMESPACE;
+    }
 
     /**
      * This method builds a valid Soap structure format
@@ -30,7 +36,7 @@ public class BaseSoap {
      * @return - a formatted String in a constellation of the relevant XML Soap Request
      * @author Yahav N. Hoffman
      */
-    protected String buildSoapPayload(String stringXmlPayload) {
+    protected static String buildSoapPayload(String stringXmlPayload) {
         logger.info("Getting `"+stringXmlPayload+"`");
         System.out.println("\nCalling "+ new Throwable().getStackTrace()[0].getMethodName());
         System.out.println("Getting `"+stringXmlPayload+"`");
@@ -58,4 +64,50 @@ public class BaseSoap {
         }
         System.out.println("DI ENDPOINT -> `"+uri+"`");
     }
+
+    private static void createSoapEnvelope(SOAPMessage soapMessage) throws SOAPException {
+        String request = buildSoapPayload(soapMessage.toString());
+        callSoapWebService(DI_URL, request);
+    }
+
+    private static void callSoapWebService(String soapEndpointUrl, String soapAction) {
+        try {
+            // Create SOAP Connection
+            SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+            SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+
+            // Send SOAP Message to SOAP Server
+            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(soapAction), soapEndpointUrl);
+
+            // Print the SOAP Response
+            System.out.println("Response SOAP Message:");
+            soapResponse.writeTo(System.out);
+            System.out.println();
+
+            soapConnection.close();
+        } catch (Exception e) {
+            System.err.println("\nError occurred while sending SOAP Request to Server!\nMake sure you have the correct endpoint URL and SOAPAction!\n");
+            e.printStackTrace();
+        }
+    }
+
+    private static SOAPMessage createSOAPRequest(String soapAction) throws Exception {
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
+
+        createSoapEnvelope(soapMessage);
+
+        MimeHeaders headers = soapMessage.getMimeHeaders();
+        headers.addHeader("SOAPAction", soapAction);
+
+        soapMessage.saveChanges();
+
+        /* Print the request message, just for debugging purposes */
+        System.out.println("Request SOAP Message:");
+        soapMessage.writeTo(System.out);
+        System.out.println("\n");
+
+        return soapMessage;
+    }
+
 }
