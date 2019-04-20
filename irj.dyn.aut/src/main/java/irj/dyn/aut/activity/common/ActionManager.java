@@ -19,6 +19,8 @@ public class ActionManager extends Loader implements IHelpMenu, IArgsAlert, IJar
             envProps = arg1;
         }
         logConsole(XML_FILE_INDICATION + xmlSuite + ENV_FILE_INDICATION + envProps);
+        getFileProperties(envProps);
+        runXmlWithTestNG(xmlSuite);
     }
 
     public static void execIllegalArgsInCmdError() {
@@ -41,6 +43,6 @@ public class ActionManager extends Loader implements IHelpMenu, IArgsAlert, IJar
 
     private static void kill() {
         logConsole(EXITING_STR);
-        System.exit(1);
+        System.exit(2);
     }
 }

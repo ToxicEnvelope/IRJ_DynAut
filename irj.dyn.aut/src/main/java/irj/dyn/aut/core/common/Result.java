@@ -1,4 +1,4 @@
-package irj.dyn.aut.activity.common;
+package irj.dyn.aut.core.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

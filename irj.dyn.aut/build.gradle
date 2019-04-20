@@ -2,14 +2,10 @@ plugins {
     id 'java'
     id 'eclipse'
 }
-
 group 'com.xsys.route'
 version '0.0.1.0'
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-
 sourceSets {
     main {
         java {
@@ -22,9 +18,18 @@ sourceSets {
         }
     }
 }
-
-
-// Jar Creation
+copy {
+    from('src/test/java/irj/dyn/aut/tests') {
+        include '**/*.*'
+    }
+    into 'src/main/java/irj/dyn/aut/tests'
+}
+copy {
+    from('src/test/java/irj/ayn/aut/utils') {
+        include '*'
+    }
+    into 'src/main/java/irj/dyn/aut/core/utils'
+}
 jar {
     manifest {
         attributes("Implementation-Title": "Interactice Runnable JRA for Dynamic Automation Testing",
@@ -35,11 +40,9 @@ jar {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
-
 repositories {
     mavenCentral()
 }
-
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.12'
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured

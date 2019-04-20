@@ -40,8 +40,8 @@ public class Loader {
             EnvManager.getInstance().setProperties(props);
         }
         catch (Exception e) {
-            logger.error("[Error] "+Thread.currentThread().getStackTrace()[0].getMethodName());
-            logConsole("[Error] "+Thread.currentThread().getStackTrace()[0].getMethodName());
+            logger.error("[Error] "+ new Throwable().getStackTrace()[0].getMethodName());
+            logConsole("[Error] "+ new Throwable().getStackTrace()[0].getMethodName());
             e.printStackTrace();
         }
     }
@@ -62,8 +62,8 @@ public class Loader {
             runner.run();
         }
         catch (Exception e) {
-            logger.error("[Error] "+Thread.currentThread().getStackTrace()[0].getMethodName());
-            logConsole("[Error] "+Thread.currentThread().getStackTrace()[0].getMethodName());
+            logger.error("[Error] "+ new Throwable().getStackTrace()[0].getMethodName());
+            logConsole("[Error] "+ new Throwable().getStackTrace()[0].getMethodName());
             e.printStackTrace();
         }
     }
