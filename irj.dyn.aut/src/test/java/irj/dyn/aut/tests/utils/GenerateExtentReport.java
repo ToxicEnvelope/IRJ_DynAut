@@ -17,14 +17,12 @@ import org.testng.annotations.BeforeTest;
 
 public class GenerateExtentReport extends RestAssured
 {
-
     private static final String ENVIRONMENT = "Environment";
     private static final String JDBC_CONN = "JDBC Connection";
     private static final String DOCKER_STR = "Docker String";
     private static final String DOCKER_PORT = "Docker Port";
     private static final String OLTP_USER = "OLTP User";
     private static final String OLTP_PASS = "OLTP Pass";
-
 
     protected static ExtentReports report;
     private static ExtentHtmlReporter html;
