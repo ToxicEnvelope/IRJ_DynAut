@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+group 'com.xsys.route'
+version '0.0.1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+    }
+}
+
+
+// Jar Creation
+jar {
+    manifest {
+        attributes("Implementation-Title": "Interactice Runnable JRA for Dynamic Automation Testing",
+                "Implementation-Version": version,
+                "Main-Class": "irj.dyn.aut.activity.MainActivity")
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '3.1.0'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    compile group: 'org.testng', name: 'testng', version: '6.14.3'
+    // https://mvnrepository.com/artifact/org.uncommons/reportng
+    compile group: 'org.uncommons', name: 'reportng', version: '1.1.4'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
+    compile group: "org.yaml", name: "snakeyaml", version: "1.18"
+    // https://mvnrepository.com/artifact/com.aventstack/extentreports
+    compile group: 'com.aventstack', name: 'extentreports', version: '4.0.9'
+}
