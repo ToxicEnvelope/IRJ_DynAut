@@ -10,6 +10,8 @@ Using Gradle to enhance `$project-build` and `$project-deployment`.
 
 - Running your IRJ via `terminal` or `cmd.exe` is similar.
 
+
+__Follow__ __the__ __commands__ __below:__ 
     
     $. java -jar {path/to/jar/IRJ.jar} -suite {suite.xml} --env {extEnvirnmentConfiguration.properties}
      
