@@ -1,5 +1,5 @@
 # IRJ_DynAut
-####Demo Runnable JAR Project - REST / SOAP api testing   
+####IRJ DynAut Project - REST / SOAP api testing   
 This is an Interactive Runnable JAR (IRJ).
 The purpose of this Java Application is to Execute API Tests.
 Using Gradle to enhance `$project-build` and `$project-deployment`.
