@@ -20,7 +20,7 @@ public class EnvManager
     private static final String AUTH_CREDS_WS = "authCredsWS";
     private static final String WS_ENDPOINT = "wsEndpoint";
     private static final String DI_ENDPOINT = "diEndpoint";
-    private static final String NAMESPACE = "idNamespace";
+    private static final String NAMESPACE = "diNamespace";
 
 
     private static Map<Object, Object> externalParameters = new HashMap<>();
